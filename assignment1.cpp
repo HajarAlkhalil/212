@@ -21,6 +21,25 @@ void insertionSort(int S[], int n)
     }
 }
 
+void bubbleSort(int S[], int n)
+{
+	for(int i=0;i<=n;i++)
+	{
+		for(int j=0;j<=n-1;j++)
+		{
+			int temp;
+			
+			if( S[j] > S[j+1] )
+			{
+				temp = S[j];
+				S[j] = S[j+1];
+				S[j+1] = temp;
+			}
+		}
+	}
+	
+}
+
 void readingArr(int S[], int n)
 {
     int i;
@@ -86,6 +105,41 @@ int main()
 
             if(menu2 == 1){
                     /*PART 1 - HAJAR*/
+                cout<<"\n\n\t\tTHIS IS SORTING ALGORITHM USING BUBBLE SORT METHOD\n\n"
+                    <<"\n\t\tPlease insert your array size (suggested value 1000 - 10000):\n\n\t\t";
+                cin>>n;
+
+                int S[n];
+                cout<<"\n\t\tRandom number generated of size " <<n<< ":\n"
+                    <<"\t\t----------------------------------\n\n\t\t";
+
+                 // Start time
+                auto t1 = chrono::high_resolution_clock::now();
+
+                // !!! Call your algorithm/function here !!!
+                readingArr(S, n); //read random generated number into array
+                bubbleSort(S, n); //sorting array
+                    cout<<"\n\n\t\tSorted array:\n"
+                        <<"\t\t----------------------------------\n\t\t"<<endl;
+                    cout<<"\t\t";
+                    //call function printArr
+                    printArr(S, n);
+
+                // Finish time
+                auto t2 = chrono::high_resolution_clock::now();
+
+                // Calculate runtime (Finish time - start time)
+                auto runtime = chrono::duration_cast<chrono::nanoseconds>(t2 - t1).count();
+
+
+                cout << "\n\nRuntime = " << runtime;
+
+                cout<<"\n\n\t\t";
+
+                system("pause");
+                system("cls");
+
+                cout<<endl;
             }
 
             else if(menu2 == 2){
