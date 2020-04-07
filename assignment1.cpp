@@ -23,6 +23,47 @@ void selectionSort(int S[], int n)
     }
 }
 
+void minmaxArr(int S[],int n,int& min, int& max)
+{
+  
+    // Get the minimum and the maximum 
+    if (n == 1) 
+	  { 
+	    max = S[1]; 
+	    min = S[1];      
+	  }     
+  	else
+  	  {
+	    //initialize min and max if there are more than one elements
+	  	if (S[1] > S[2])   
+		  { 
+	      	max = S[1]; 
+	      	min = S[2]; 
+		  }   
+	  	else
+		  { 
+			max = S[2]; 
+	      	min = S[1]; 
+	  	  }     
+	  
+		//searching the maximum number in the array
+		for (int i = 3; i<n; i++) 
+		  { 
+	    	if (S[i] > max)       
+	    		max = S[i]; 
+		  }
+	  
+		//searching the minimum number in the array
+		for (int i = 3; i<n; i++) 
+		  { 
+		  	if (S[i] <  min)       
+	    		min = S[i]; 
+		  }
+						
+      }
+  
+}
+
 void readingArr(int S[], int n)
 {
     int i;
@@ -91,6 +132,35 @@ int main()
 
             if(menu2 == 1){
                     /*PART 1 - HAJAR*/
+                cout<<"\n\n\t\tTHIS ALGORITHM IS TO FIND THE MINIMUM AND THE MAXIMUM NUMBER IN THE ARRAY\n\n"
+                    <<"\n\t\tPlease insert your array size (suggested value 1000 - 10000):\n\n\t\t";
+                cin>>n;
+                int S[n];
+                cout<<"\n\t\tRandom number generated of size " <<n<< ":\n"
+                    <<"\t\t----------------------------------\n\n\t\t";
+                int min,max;
+                readingArr(S, n); //read random generated number into array
+                
+                 // Start time
+                auto t1 = chrono::high_resolution_clock::now();
+                minmaxArr(S, n, min, max);
+                // Finish time
+                auto t2 = chrono::high_resolution_clock::now();
+                // Calculate runtime (Finish time - start time)
+                auto runtime = chrono::duration_cast<chrono::nanoseconds>(t2 - t1).count();
+                
+                cout<<"\n\n\t\tThe maximum number in this array is:"<<max;
+                cout<<"\n\t\tThe minimum number in this array is:"<<min;
+                cout<<endl;
+
+                cout << "\n\nRuntime = " << runtime;
+
+                cout<<"\n\n\t\t";
+
+                system("pause");
+                system("cls");
+
+                cout<<endl;
             }
 
             else if(menu2 == 2){
